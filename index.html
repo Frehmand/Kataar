@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Kataar 3D</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <section id="hud">
+    <div class="brand">
+      <div>
+        <div class="title">Kataar 3D</div>
+        <div class="subtitle">PLAYER BLACK vs AI RED</div>
+      </div>
+      <div id="turnBadge">STONE</div>
+    </div>
+
+    <div id="status">Loading...</div>
+
+    <div class="controls">
+      <button id="newGameBtn" type="button">New Game</button>
+      <button id="aiBtn" type="button">AI: ON</button>
+      <div class="levelButtons" aria-label="Choose AI level">
+        <button id="levelEasy" class="levelBtn" type="button">Easy</button>
+        <button id="levelMid" class="levelBtn active" type="button">Mid</button>
+        <button id="levelHard" class="levelBtn" type="button">Hard</button>
+      </div>
+      <button id="cameraBtn" type="button">Camera</button>
+      <button id="helpBtn" type="button">Help</button>
+    </div>
+
+    <div id="score">
+      <span>Stone: <b id="stonePlaced">0</b>/9</span>
+      <span>Stick: <b id="stickPlaced">0</b>/9</span>
+      <span>Stone board: <b id="stonePieces">0</b></span>
+      <span>Stick board: <b id="stickPieces">0</b></span>
+    </div>
+
+    <div id="help" class="hidden">
+      <p><b>Place:</b> Tap/click a green circle.</p>
+      <p><b>Move:</b> Tap/click your piece first, then tap/click a blue connected circle.</p>
+      <p><b>Capture:</b> Tap/click a red opponent piece after making a train.</p>
+      <p><b>Easy:</b> Same train line can repeat, train pieces can be captured, and AI can make mistakes.</p>
+      <p><b>Mid:</b> Same train line cannot repeat unless all other train lines are done, or it is a true 2 Kataara move. Train pieces cannot be captured unless all pieces are in trains. AI can make some mistakes.</p>
+      <p><b>Hard:</b> Same train line cannot repeat unless all other train lines are done. Train pieces cannot be captured unless all pieces are in trains. AI uses lookahead for best move and best capture.</p>
+      <p><b>Camera:</b> The board is fixed in a square top-down view, so all sides stay the same size.</p>
+    </div>
+  </section>
+
+
+
+  <section id="victoryOverlay" class="hidden" aria-live="polite">
+    <div class="victoryCard">
+      <div id="victoryEmoji" class="victoryEmoji">🎉</div>
+      <div id="victoryTitle" class="victoryTitle">YOU WON!</div>
+      <div id="victorySubtitle" class="victorySubtitle">Stone defeated AI Red.</div>
+      <button id="playAgainOverlayBtn" type="button">Play Again</button>
+      <div id="confettiLayer" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>
